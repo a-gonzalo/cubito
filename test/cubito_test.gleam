@@ -1,18 +1,20 @@
 import cubito
+import gleam/dynamic
+import gleam/dynamic/decode
 import gleeunit
 
 pub fn main() -> Nil {
   gleeunit.main()
 }
 
-pub fn hello_world_test() {
+pub fn cubito_init_test() {
   let assert Ok(db) = cubito.start([cubito.DataDir("./cubito")])
-  echo db
-  let put_result = cubito.put(db, "e", "a")
-  echo put_result
-  let get_result = cubito.get(db, "e")
-  echo get_result
-  cubito.delete(db, "e")
-  let get_result = cubito.get(db, "e")
-  echo get_result
+  cubito.clear(db)
+}
+
+pub fn cubito_put_test() {
+  let assert Ok(db) = cubito.start([cubito.DataDir("./cubito_put")])
+  cubito.put(db, "Key", "Value")
+  let get_raw = cubito.get(db, "Key")
+  assert get_raw == "Value"
 }
