@@ -1,13 +1,21 @@
-pub type CubDB
+import gleam/dynamic
+import gleam/erlang/process.{type Pid}
+
+pub type CubDB =
+  Pid
+
+pub type CubDBOption {
+  DataDir(String)
+}
+
+@external(erlang, "Elixir.CubDB", "start")
+pub fn start(options: List(CubDBOption)) -> Result(CubDB, dynamic.Dynamic)
 
 @external(erlang, "Elixir.CubDB", "put")
 pub fn put(db: CubDB, key: String, value: String) -> Nil
 
 @external(erlang, "Elixir.CubDB", "get")
-pub fn get(db: CubDB, key: String) -> String
+pub fn get(db: CubDB, key: String) -> dynamic.Dynamic
 
 @external(erlang, "Elixir.CubDB", "delete")
-pub fn delete(db: CubDB, key: String) -> String
-
-@external(erlang, "Elixir.CubDB", "start_link")
-pub fn start_link(path: String) -> CubDB
+pub fn delete(db: CubDB, key: String) -> Nil

@@ -1,15 +1,18 @@
 import cubito
-import gleam/dynamic
 import gleeunit
 
 pub fn main() -> Nil {
   gleeunit.main()
 }
 
-// gleeunit test functions end in `_test`
 pub fn hello_world_test() {
-  let db = cubito.start_link("./cubito")
+  let assert Ok(db) = cubito.start([cubito.DataDir("./cubito")])
   echo db
-  let res = cubito.put(db, "Esta", "Aqui")
-  echo res
+  let put_result = cubito.put(db, "e", "a")
+  echo put_result
+  let get_result = cubito.get(db, "e")
+  echo get_result
+  cubito.delete(db, "e")
+  let get_result = cubito.get(db, "e")
+  echo get_result
 }
