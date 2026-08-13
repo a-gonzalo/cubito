@@ -1,5 +1,4 @@
 import gleam/dynamic
-import gleam/erlang/process.{type Pid}
 
 pub type CubDB(k, v)
 

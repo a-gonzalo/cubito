@@ -1,6 +1,4 @@
 import cubito
-import gleam/dynamic
-import gleam/dynamic/decode
 import gleeunit
 
 pub fn main() -> Nil {
