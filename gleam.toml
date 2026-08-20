@@ -1,12 +1,12 @@
 name = "cubito"
-version = "1.0.0"
+version = "0.5.0"
 
 # Fill out these fields if you intend to generate HTML documentation or publish
 # your project to the Hex package manager.
 #
-# description = ""
+description = "Cubito is a CubDB bindings library for Gleam"
 licences = ["Apache-2.0"]
-# repository = { type = "github", user = "", repo = "" }
+repository = { type = "github", user = "a-gonzalo", repo = "https://github.com/a-gonzalo/cubito" }
 # links = [{ title = "Website", href = "" }]
 #
 # For a full reference of all the available options, you can have a look at

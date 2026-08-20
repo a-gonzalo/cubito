@@ -2,7 +2,7 @@
 
 `cubito` provides native, strongly-typed **CubDB** bindings for **Gleam**.
 
-[CubDB](https://github.com) is a pure Elixir/Erlang embedded key-value database that is atomic, transactional, and durable (ACID). With `cubito`, you can use it seamlessly in your Gleam projects while maintaining strict compile-time type safety.
+[CubDB](https://github.com/lucaong/cubdb) is a pure Elixir/Erlang embedded key-value database that is atomic, transactional, and durable (ACID). With `cubito`, you can use it seamlessly in your Gleam projects while maintaining strict compile-time type safety.
 
 ## Features
 
@@ -50,16 +50,17 @@ pub fn main() {
 ```
 
 ### Example 2: Composite Keys Using Tuples
-Thanks to generic typing, you can use complex tuples as keys. This is extremely useful for time-series data, events, or compound indexes (e.g., `#(SensorID, Timestamp)`).
+Thanks to generic typing, you can use complex tuples as keys (or values). This is extremely useful for time-series data, events, or compound indexes (e.g., `#(SensorID, Timestamp)`).
 
 ```gleam
 import cubito
 import gleam/io
 
 pub fn main() {
-  // Gleam automatically infers this DB as CubDB(#(String, Int), String)
+  
   let assert Ok(db) = cubito.start([cubito.DataDir("./data/telemetry")])
 
+  // Gleam automatically infers this DB as CubDB(#(String, Int), String)
   // Write data using a tuple as a composite key: #(SensorID, Timestamp)
   cubito.put(db, #("temp_sensor_01", 171800200), "36.5°C")
   cubito.put(db, #("temp_sensor_01", 171800300), "38.2°C")
